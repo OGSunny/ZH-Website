@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - ZH Anti Link Bot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav {
+            padding: 20px 0;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .docs-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+
+        .sidebar-section {
+            margin-bottom: 32px;
+        }
+
+        .sidebar-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .sidebar-links {
+            list-style: none;
+        }
+
+        .sidebar-links li {
+            margin-bottom: 8px;
+        }
+
+        .sidebar-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        .sidebar-links a:hover,
+        .sidebar-links a.active {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        .content {
+            max-width: 900px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 16px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 48px;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-top: 64px;
+            margin-bottom: 24px;
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 24px;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+        }
+
+        .command-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .command-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .command-name {
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .command-badge {
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .command-desc {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 16px;
+        }
+
+        .command-usage {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #fff;
+            border-left: 3px solid #667eea;
+        }
+
+        .info-box {
+            background: rgba(102, 126, 234, 0.1);
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 32px 0;
+        }
+
+        .info-box-title {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .warning-box {
+            background: rgba(234, 102, 102, 0.1);
+            border-left: 4px solid #ea6666;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 32px 0;
+        }
+
+        .warning-box-title {
+            font-weight: 600;
+            color: #ea6666;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            margin-left: 24px;
+            margin-bottom: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #667eea;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 1024px) {
+            .docs-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: relative;
+                top: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="index.html" class="logo">🛡️ ZH Anti Link</a>
+        </nav>
+
+        <a href="index.html" class="back-link">← Back to Home</a>
+
+        <div class="docs-layout">
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <div class="sidebar-title">Getting Started</div>
+                    <ul class="sidebar-links">
+                        <li><a href="#setup" class="active">Setup</a></li>
+                        <li><a href="#permissions">Permissions</a></li>
+                        <li><a href="#quickstart">Quick Start</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-title">Commands</div>
+                    <ul class="sidebar-links">
+                        <li><a href="#info-commands">Info Commands</a></li>
+                        <li><a href="#config-commands">Configuration</a></li>
+                        <li><a href="#moderation-commands">Moderation</a></li>
+                        <li><a href="#advanced-commands">Advanced</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-title">Features</div>
+                    <ul class="sidebar-links">
+                        <li><a href="#detection">Link Detection</a></li>
+                        <li><a href="#whitelisting">Whitelisting</a></li>
+                        <li><a href="#punishment">Punishment System</a></li>
+                        <li><a href="#personality">Personality Modes</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-title">Guides</div>
+                    <ul class="sidebar-links">
+                        <li><a href="#best-practices">Best Practices</a></li>
+                        <li><a href="#troubleshooting">Troubleshooting</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <main class="content">
+                <h1>Documentation</h1>
+                <p class="subtitle">Everything you need to know about ZH Anti Link Bot</p>
+
+                <h2 id="setup">Setup</h2>
+                <p>Getting started with ZH Anti Link Bot is simple and takes less than 5 minutes.</p>
+
+                <h3>Step 1: Invite the Bot</h3>
+                <p>Click the invite link and select your server. Make sure you have "Manage Server" permissions.</p>
+                
+                <div class="info-box">
+                    <div class="info-box-title">📋 Invite Link</div>
+                    <p style="margin: 0;">Use this link to add the bot to your server:<br>
+                    <code>https://discord.com/api/oauth2/authorize?client_id=1434629264220753960&permissions=1374925398102&scope=bot</code></p>
+                </div>
+
+                <h3 id="permissions">Step 2: Required Permissions</h3>
+                <p>The bot needs these permissions to function properly:</p>
+                <ul>
+                    <li><strong>Read Messages/View Channels</strong> - To monitor messages</li>
+                    <li><strong>Send Messages</strong> - To send warnings and notifications</li>
+                    <li><strong>Manage Messages</strong> - To delete messages containing links</li>
+                    <li><strong>Timeout Members</strong> - To timeout users with warnings</li>
+                    <li><strong>Kick Members</strong> - For the kick punishment tier</li>
+                    <li><strong>Ban Members</strong> - For permanent bans</li>
+                </ul>
+
+                <h3 id="quickstart">Step 3: Configuration</h3>
+                <p>The bot works immediately after invite with default settings. Customize it using commands:</p>
+                <ul>
+                    <li>Use <code>!zh-help</code> to see all available commands</li>
+                    <li>Use <code>!zh-whitelist</code> to allow trusted domains</li>
+                    <li>Use <code>!zh-personality</code> to change response style</li>
+                </ul>
+
+                <h2 id="info-commands">Information Commands</h2>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <span class="command-name">!zh-help</span>
+                        <span class="command-badge">Everyone</span>
+                    </div>
+                    <p class="command-desc">Display complete command reference and bot information</p>
+                    <div class="command-usage">!zh-help</div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <span class="command-name">!zh-stats</span>
+                        <span class="command-badge">Moderator</span>
+                    </div>
+                    <p class="command-desc">View server protection statistics including total violations, deleted messages, and punishment counts</p>
+                    <div class="command-usage">!zh-stats</div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <span class="command-name">!zh-status</span>
+                        <span class="command-badge">Everyone</span>
+                    </div>
+                    <p class="command-desc">Display bot uptime, performance metrics, and system status</p>
+                    <div class="command-usage">!zh-status</div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <span class="command-name">!zh-check</span>
+                        <span class="command-badge">Moderator</span>
+                    </div>
+                    <p class="command-desc">Test link detection on any text to see if it would be caught</p>
+                    <div class="command-usage">!zh-check [text]</div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <span class="command-name">!zh-invite</span>
+                        <span class="command-badge">Everyone</span>
+                    </div>
+                    <p class="command-desc">Get the bot invite link with proper permissions</p>
+                    <div class="command-usage">!zh-invite</div>
+                </div>
+
+                <h2 id="config-commands">Configuration Commands</h2>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <span class="command-name">!zh-whitelist add</span>
+                        <span class="command-badge">Admin</span>
+                    </div>
+                    <p class="command-desc">Add a domain to the whitelist (e.g., youtube.com, twitter.com)</p>
+                    <div class="command-usage">!zh-whitelist add [domain]</div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <span class="command-name">!zh-whitelist remove</span>
+                        <span class="command-badge">Admin</span>
+                    </div>
+                    <p class="command-desc">Remove a domain from the whitelist</p>
+                    <div class="command-usage">!zh-whitelist remove [domain]</div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <span class="command-name">!zh-whitelist list</span>
+                        <span class="command-badge">Moderator</span>
+                    </div>
+                    <p class="command-desc">Show all whitelisted domains</p>
+                    <div class="command-usage">!zh-whitelist list</div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <span class="command-name">!zh-whitelist channel</span>
+                        <span class="command-badge">Admin</span>
+                    </div>
+                    <p class="command-desc">Whitelist a channel to allow all links there</p>
+                    <div class="command-usage">!zh-whitelist channel #channel-name</div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <span class="command-name">!zh-whitelist role</span>
+                        <span class="command-badge">Admin</span>
+                    </div>
+                    <p class="command-desc">Whitelist a role to allow members to post links</p>
+                    <div class="command-usage">!zh-whitelist role @role-name</div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <span class="command-name">!zh-setmax</span>
+                        <span class="command-badge">Admin</span>
+                    </div>
+                    <p class="command-desc">Set maximum warnings before permanent ban (1-50)</p>
+                    <div class="command-usage">!zh-setmax [number]</div>
+                </div>
+
+                <h2 id="moderation-commands">Moderation Commands</h2>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <span class="command-name">!zh-warnings</span>
+                        <span class="command-badge">Moderator</span>
+                    </div>
+                    <p class="command-desc">Check warning count and violation history for a user</p>
+                    <div class="command-usage">!zh-warnings [@user]</div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <span class="command-name">!zh-reset</span>
+                        <span class="command-badge">Admin</span>
+                    </div>
+                    <p class="command-desc">Reset all warnings for a specific user</p>
+                    <div class="command-usage">!zh-reset @user</div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <span class="command-name">!zh-logs</span>
+                        <span class="command-badge">Moderator</span>
+                    </div>
+                    <p class="command-desc">View recent violation logs (default: 10, max: 25)</p>
+                    <div class="command-usage">!zh-logs [count]</div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <span class="command-name">!zh-purge</span>
+                        <span class="command-badge">Admin</span>
+                    </div>
+                    <p class="command-desc">Scan and delete messages containing links in bulk</p>
+                    <div class="command-usage">!zh-purge [count]</div>
+                </div>
+
+                <h2 id="advanced-commands">Advanced Commands</h2>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <span class="command-name">!zh-toggle strict</span>
+                        <span class="command-badge">Admin</span>
+                    </div>
+                    <p class="command-desc">Enable/disable strict mode for maximum protection</p>
+                    <div class="command-usage">!zh-toggle strict</div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <span class="command-name">!zh-toggle embeds</span>
+                        <span class="command-badge">Admin</span>
+                    </div>
+                    <p class="command-desc">Enable/disable scanning of message embeds</p>
+                    <div class="command-usage">!zh-toggle embeds</div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <span class="command-name">!zh-toggle attachments</span>
+                        <span class="command-badge">Admin</span>
+                    </div>
+                    <p class="command-desc">Enable/disable scanning of file attachments</p>
+                    <div class="command-usage">!zh-toggle attachments</div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <span class="command-name">!zh-personality</span>
+                        <span class="command-badge">Admin</span>
+                    </div>
+                    <p class="command-desc">Change bot response personality (friendly, strict, funny, professional, sarcastic)</p>
+                    <div class="command-usage">!zh-personality [type]</div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header">
+                        <span class="command-name">!zh-export</span>
+                        <span class="command-badge">Admin</span>
+                    </div>
+                    <p class="command-desc">Export all server data as JSON file</p>
+                    <div class="command-usage">!zh-export</div>
+                </div>
+
+                <h2 id="detection">Link Detection</h2>
+                <p>ZH Anti Link Bot uses advanced detection methods to catch links that other bots miss.</p>
+
+                <h3>What Gets Detected</h3>
+                <ul>
+                    <li>Standard URLs (http://, https://)</li>
+                    <li>Discord invites (discord.gg, discord.com/invite)</li>
+                    <li>Bare domains (google.com, youtube.com)</li>
+                    <li>URL shorteners (bit.ly, tinyurl.com, etc.)</li>
+                    <li>Obfuscated links (d1sc0rd.gg, disc ord . gg)</li>
+                    <li>Encoded links (base64, ROT13, hex)</li>
+                    <li>Homoglyph characters (using similar-looking letters)</li>
+                    <li>Zero-width character tricks</li>
+                    <li>Markdown hidden links [text](url)</li>
+                    <li>Social engineering ("click here for free nitro")</li>
+                </ul>
+
+                <h3>Detection Modes</h3>
+                <p><strong>Normal Mode:</strong> Balanced detection with minimal false positives</p>
+                <p><strong>Strict Mode:</strong> Maximum protection, may catch more edge cases</p>
+
+                <h2 id="whitelisting">Whitelisting</h2>
+                <p>Control what links are allowed in your server with flexible whitelisting options.</p>
+
+                <h3>Domain Whitelist</h3>
+                <p>Allow specific trusted websites:</p>
+                <div class="command-usage">!zh-whitelist add youtube.com<br>!zh-whitelist add twitter.com<br>!zh-whitelist add github.com</div>
+
+                <h3>Channel Whitelist</h3>
+                <p>Allow all links in specific channels (great for media channels):</p>
+                <div class="command-usage">!zh-whitelist channel #links<br>!zh-whitelist channel #media</div>
+
+                <h3>Role Whitelist</h3>
+                <p>Allow trusted members to post links anywhere:</p>
+                <div class="command-usage">!zh-whitelist role @Moderator<br>!zh-whitelist role @Trusted</div>
+
+                <div class="info-box">
+                    <div class="info-box-title">💡 Pro Tip</div>
+                    <p style="margin: 0;">Start with a restrictive setup and whitelist as needed. It's easier to allow trusted content than to deal with spam.</p>
+                </div>
+
+                <h2 id="punishment">Punishment System</h2>
+                <p>Progressive punishment system that escalates with repeated violations.</p>
+
+                <h3>Default Tiers</h3>
+                <ul>
+                    <li><strong>1st violation:</strong> Warning message</li>
+                    <li><strong>3 warnings:</strong> 10-minute timeout</li>
+                    <li><strong>5 warnings:</strong> 1-hour timeout</li>
+                    <li><strong>7 warnings:</strong> Kick from server</li>
+                    <li><strong>10 warnings:</strong> Permanent ban</li>
+                </ul>
+
+                <div class="warning-box">
+                    <div class="warning-box-title">⚠️ Important</div>
+                    <p style="margin: 0;">Adjust the maximum warnings using <code>!zh-setmax</code> to fit your server's moderation style. Lower values for stricter enforcement.</p>
+                </div>
+
+                <h2 id="personality">Personality Modes</h2>
+                <p>Customize how the bot responds to violations to match your server's tone.</p>
+
+                <h3>Available Personalities</h3>
+                <ul>
+                    <li><strong>Friendly:</strong> "Hey! Links aren't allowed here 😅"</li>
+                    <li><strong>Strict:</strong> "⚠️ Link detected and removed."</li>
+                    <li><strong>Funny:</strong> "Bruh really tried to sneak a link in 💀"</li>
+                    <li><strong>Professional:</strong> "Your message contained a link and has been removed."</li>
+                    <li><strong>Sarcastic:</strong> "Oh, a link. How *original* 🙄"</li>
+                </ul>
+
+                <h2 id="best-practices">Best Practices</h2>
+
+                <h3>Initial Setup</h3>
+                <ul>
+                    <li>Start with default settings and adjust as needed</li>
+                    <li>Whitelist your trusted domains immediately</li>
+                    <li>Create a dedicated links channel if needed</li>
+                    <li>Inform members about the new bot</li>
+                </ul>
+
+                <h3>Ongoing Management</h3>
+                <ul>
+                    <li>Review violation logs weekly</li>
+                    <li>Adjust whitelist based on community needs</li>
+                    <li>Reset warnings for reformed members</li>
+                    <li>Keep punishment tiers appropriate for your server size</li>
+                </ul>
+
+                <h3>For Large Servers</h3>
+                <ul>
+                    <li>Enable strict mode for maximum protection</li>
+                    <li>Lower max warnings for faster enforcement</li>
+                    <li>Whitelist moderator roles</li>
+                    <li>Regular purge scans in high-traffic channels</li>
+                </ul>
+
+                <h2 id="troubleshooting">Troubleshooting</h2>
+
+                <h3>Bot Not Responding</h3>
+                <ul>
+                    <li>Check bot has required permissions</li>
+                    <li>Ensure bot role is above user roles</li>
+                    <li>Verify bot is online</li>
+                    <li>Try re-inviting the bot</li>
+                </ul>
+
+                <h3>False Positives</h3>
+                <ul>
+                    <li>Disable strict mode</li>
+                    <li>Whitelist the specific domain</li>
+                    <li>Use <code>!zh-check</code> to test detection</li>
+                    <li>Contact support for persistent issues</li>
+                </ul>
+
+                <h3>Links Not Being Caught</h3>
+                <ul>
+                    <li>Enable strict mode</li>
+                    <li>Enable embed and attachment scanning</li>
+                    <li>Check if domain is whitelisted</li>
+                    <li>Verify bot has read message permissions</li>
+                </ul>
+
+                <div class="info-box">
+                    <div class="info-box-title">📞 Need More Help?</div>
+                    <p style="margin: 0;">Join our support server for assistance, feature requests, and community discussion.</p>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
